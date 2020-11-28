@@ -1,0 +1,50 @@
+{% extends "layout.html.twig" %}
+
+{% import _self as macros %}
+
+{% block content %}
+    <div id="searchbar" class="clearfix">
+        <input id="docsearch" type="search" placeholder="Type here to search documentation..."
+               title="Enter text here and submit to search the documentation" aria-label="Search box: enter text here and submit to search the Composer documentation"/>
+    </div>
+
+    <h1>Book</h1>
+    <ul>
+        {% for filename, data in book %}
+            {{ macros.renderFile(filename, data) }}
+        {% endfor %}
+    </ul>
+
+    <h1>Articles</h1>
+    <ul>
+        {% for filename, data in articles %}
+            {{ macros.renderFile(filename, data) }}
+        {% endfor %}
+    </ul>
+
+    <h1>FAQs</h1>
+    <ul>
+        {% for filename, data in faqs %}
+            {{ macros.renderFile(filename, data) }}
+        {% endfor %}
+    </ul>
+
+    <h1>API Docs</h1>
+    <p>If you need to work with composer as a library you may also want to check out the
+        <a href="https://github.com/composer/composer/tree/HEAD/src/Composer" title="Go to the source browser" aria-label="Go to the source browser">
+            source
+        </a>
+    </p>
+{% endblock %}
+
+{% macro renderFile(filename, data) %}
+    <li>
+        <a href="{{ data.link }}" title="Go to documentation section: {{ filename }}"
+           aria-label="Link to documentation section: {{ filename }}">
+            {{ filename }}
+        </a>
+        {% if data.metadata is defined and data.metadata.tagline is defined %}
+            <span class="tagline">{{ data.metadata.tagline }}</span>
+        {% endif %}
+    </li>
+{% endmacro %}

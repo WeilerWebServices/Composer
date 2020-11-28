@@ -1,0 +1,16 @@
+git clone https://github.com/composer/composer.git
+git clone https://github.com/composer/packagist.git
+git clone https://github.com/composer/getcomposer.org.git
+git clone https://github.com/composer/satis.git
+git clone https://github.com/composer/installers.git
+git clone https://github.com/composer/windows-setup.git
+git clone https://github.com/composer/spdx-licenses.git
+git clone https://github.com/composer/semver.git
+git clone https://github.com/composer/composer.github.io.git
+git clone https://github.com/composer/ca-bundle.git
+git clone https://github.com/composer/docker.git
+git clone https://github.com/composer/xdebug-handler.git
+git clone https://github.com/composer/search-extension.git
+git clone https://github.com/composer/.github.git
+git clone https://github.com/composer/package-versions-deprecated.git
+git clone https://github.com/composer/mirror.git

@@ -1,0 +1,45 @@
+{% extends "layout.html.twig" %}
+
+{% import _self as macros %}
+
+{% block title %}{% if title is not empty %}{{ title }} - {% endif %}{{ parent() }}{% endblock %}
+
+{% block content %}
+
+    <div id="searchbar" class="clearfix">
+        <input id="docsearch" type="text" placeholder="Type here to search documentation..."
+               title="Enter text here and submit to search the documentation"/>
+    </div>
+
+    {% if toc|length %}
+        <ul class="toc">
+            {{ macros.tocTree(toc|length > 3 ? toc : toc.1) }}
+        </ul>
+    {% endif %}
+
+    {{ doc|raw }}
+
+    <p class="fork-and-edit">
+        Found a typo? Something is wrong in this documentation?
+        <a href="https://github.com/composer/composer/edit/master/doc/{{ file }}"
+           title="Go to the doc master to fork and propose updates (external link)"
+           aria-label="Go to the doc master to fork and propose updates (external link)">Fork and edit</a> it!
+    </p>
+{% endblock %}
+
+{% macro tocTree(tree) %}
+    {% import _self as macros %}
+
+    {% for key, node in tree %}
+        {% if (key not in ['title', 'id', 'desc']) %}
+            <li>
+                <a href="#{{ node.id }}">{{ node.title }}</a> {{ node.desc }}
+                {% if node|length > 3 %}
+                    <ul>
+                        {{ macros.tocTree(node) }}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
